@@ -1,7 +1,7 @@
 {
   "name": "brhtw",
   "version": "1.0.0",
-  "description": "",
+  "description": "react how to work",
   "main": "index.js",
   "scripts": {
     "lint": "eslint --ext .ts,.jsx,.tsx --fix --quiet ./packages"
