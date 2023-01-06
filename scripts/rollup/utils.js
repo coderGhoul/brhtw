@@ -7,6 +7,7 @@ import replace from '@rollup/plugin-replace';
 import cjs from '@rollup/plugin-commonjs';
 
 const pkgPath = path.resolve(__dirname, '../../packages');
+// 因为看源码打包的 类似于 
 const distPath = path.resolve(__dirname, '../../dist/node_modules');
 
 // 解析 路径
