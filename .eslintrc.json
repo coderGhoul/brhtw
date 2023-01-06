@@ -12,7 +12,6 @@
   },
   "plugins": ["@typescript-eslint"],
   "rules": {
-    "no-case-declarations": "off",
-    "no-const-assign": "off"
+    "no-case-declarations": "off"
   }
 }
