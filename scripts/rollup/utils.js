@@ -32,7 +32,7 @@ export function getPackageJSON(pkgName) {
 
 // 获取所有的基础的plugin 解析成commonjs 和 将ts->js 的plugin
 /**
- * 1. ts->js rollup-plugin-typescript2 
+ * 1. ts->js rollup-plugin-typescript2
  * 2. commonjs @rollup/plugin-commonjs
  *
  * install 这两个包

@@ -59,4 +59,29 @@ export function jsx(type: ELementType, config: any) {
   return ReactElement(type, key, ref, props);
 }
 
-export const jsxDev = jsx;
+export const jsxDev = (type: ELementType, config: any) => {
+  let key = null;
+  const props: Props = {};
+  const ref: Ref = null;
+
+  /*在源码中这个地方是区分了 开发环境和生产环境
+   *在生产环境中是将key 和 ref
+   *存放在了maybekey判断 hasValidRef 和 hasValidKey 使用 hasOwnproperty.call('config','key'/'ref')来判断
+   ** 然后遍历config 拿到 config 的属性 赋值给props 并且做一些额外的检查
+   * 这里我们为了简单只写了生产环境的代码可以一起放在config当中一起被收集
+   */
+
+  for (const prop in config) {
+    if (prop === 'key' && config[prop] !== undefined) {
+      key = '' + key;
+    }
+    if (prop === 'ref' && config[prop] !== undefined) {
+      key = '' + config[prop];
+    }
+    if (hasOwnProperty.call(config, props)) {
+      props[prop] = config[prop];
+    }
+  }
+  //返回一个ReactELement
+  return ReactElement(type, key, ref, props);
+};
