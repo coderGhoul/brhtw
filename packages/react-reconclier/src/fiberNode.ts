@@ -51,7 +51,7 @@ export class FiberNode {
     //实际的div
     this.stateNode = null;
 
-    //Fiber 这里存放着
+    //Fiber 这里存放着相关的节点
     this.return = null;
     this.child = null;
     this.sibling = null;

@@ -11,3 +11,5 @@ export interface REACT_ELEMENT {
   props: Props;
   ref: Ref;
 }
+
+export type Action<State> = State | ((prev: State) => State);
