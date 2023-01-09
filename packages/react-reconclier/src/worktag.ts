@@ -52,7 +52,7 @@ export const ContextConsumer = 9;
 // 	<Context.Provider>
 export const ContextProvider = 10;
 //	React.ForwardRef
-export const ForwardRef = 11;
+export const ForwardRef = 11; 
 export const Profiler = 12;
 export const SuspenseComponent = 13;
 export const MemoComponent = 14;

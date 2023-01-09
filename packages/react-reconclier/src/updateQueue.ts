@@ -43,12 +43,12 @@ export function createUpdateQueue() {
 }
 
 //将update 添加至 updateQueue队列中
-function enUpdateQueue<State>(updateQueue: UpdateQueue<State>, update: Update<State>) {
+export function enUpdateQueue<State>(updateQueue: UpdateQueue<State>, update: Update<State>) {
   updateQueue.shared.pending = update;
 }
 
 //消费update的方法
-const processUpdateQueue = <State>(
+export const processUpdateQueue = <State>(
   baseState: State,
   pendingUpdate: Update<State> | null,
 ): { memoizedState: State } => {
@@ -65,5 +65,6 @@ const processUpdateQueue = <State>(
       result.memoizedState = action;
     }
   }
+  //
   return result;
 };

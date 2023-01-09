@@ -1,14 +1,38 @@
-import { FiberNode } from './fiberNode';
+import { FiberNode, createWorkInProgress, FiberRootNode } from './fiberNode';
 import { beginWork } from './beginWork';
 import { completeWork } from './completeWork';
+import { HostRoot } from './worktag';
 // workInprogress 表示正在构建的树 在这里也可以理解成指针
 let workInProgress: FiberNode | null = null;
 
-function prepareFreshStack(fiber: FiberNode) {
-  workInProgress = fiber;
+// 将之前写的UpdateContainer 和 renderRoot相结合
+// 即在 fiber 中 调度 update
+export function scheduleUpdateOnFilber(fiber: FiberNode) {
+  // TODO 调度
+  // 拿到fiberRootNode  因为React实现diff相当于全局的不像是VUe一样 通过proxy代理 ，然后可以颗粒度更小的记录 节点所在的位置
+  const root = markUpdateFromFiberToRoot(fiber);
+  renderRoot(root);
+}
+
+// 找到fiberRootNode
+function markUpdateFromFiberToRoot(fiber: FiberNode) {
+  let node = fiber;
+  let parent = node.return;
+  if (parent !== null) {
+    node = parent;
+    parent = node.return;
+  }
+
+  if (node.tag === HostRoot) {
+    return node.stateNode;
+  }
+}
+
+function prepareFreshStack(root: FiberRootNode) {
+  workInProgress = createWorkInProgress(root.current, {});
 }
 // 首次构建应用， 创建一个 fiberRoot ，作为整个 React 应用的根基
-function renderRoot(root: FiberNode) {
+function renderRoot(root: FiberRootNode) {
   //完成了对应的初始化
   prepareFreshStack(root);
   do {
