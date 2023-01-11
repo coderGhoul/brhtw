@@ -19,8 +19,8 @@ export const NoFlags = /*                */ 0b00000000000000000000000000;
 export const PerformedWork = /*                */ 0b00000000000000000000000001;
 
 // 下面的 flags 用于标记副作用
-export const Placement = /*                    */ 0b00000000000000000000000010;
 //2 移动，插入
+export const Placement = /*                    */ 0b00000000000000000000000010;
 export const Update = /*                       */ 0b00000000000000000000000100;
 export const ChildDeletion = /*                */ 0b00000000000000000000001000;
 export const ContentReset = /*                 */ 0b00000000000000000000010000;

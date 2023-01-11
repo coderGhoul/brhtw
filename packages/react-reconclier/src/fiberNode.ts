@@ -16,9 +16,10 @@
  */
 
 import { Key, Props, Ref, Type } from 'shared/ReactTypes';
-import { WorkTag } from './worktag';
+import { FunctionComponent, WorkTag, HostComponent } from './worktag';
 import { Flags, NoFlags } from './fiberFlags';
 import { Container } from 'hostConfig';
+import { REACT_ELEMENT } from '../../shared/ReactTypes';
 // 创建filberNode 这种结构
 
 /**
@@ -121,4 +122,18 @@ export function createWorkInProgress(current: FiberNode, pendingProps: any) {
   workInProgress.memoizedState = current.memoizedState;
 
   return workInProgress;
+}
+
+// 根据reactElement 创建 对应的 FiberNode
+export function createFiberFromElement(elemnt: REACT_ELEMENT) {
+  const { type, props, key } = elemnt;
+  // 默认我们让他是函数式组件
+  let FiberTag: WorkTag = FunctionComponent;
+  if (typeof type === 'string') {
+    //如果是一个string类型证明是HostComponent
+    FiberTag = HostComponent;
+  }
+  const fiber = new FiberNode(FiberTag, props, key);
+  fiber.tag = type;
+  return fiber;
 }
