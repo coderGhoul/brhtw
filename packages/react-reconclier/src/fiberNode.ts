@@ -44,6 +44,7 @@ export class FiberNode {
   memoizedState: any;
   updateQueue: unknown;
   flag: Flags;
+  subtreeFlags: Flags;
   constructor(tag: WorkTag, pendingProps: Props, key: Key) {
     //Instance
     this.tag = tag;
@@ -70,6 +71,7 @@ export class FiberNode {
     this.updateQueue = null;
     //副作用
     this.flag = NoFlags;
+    this.subtreeFlags = NoFlags;
   }
 }
 
